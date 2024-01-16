@@ -1,6 +1,5 @@
 'use client'
 import React, { useState, useMemo } from "react";
-
 const isPrimeNumber = (n) => {
   console.log("Expensive calculation execution for prime");
   let num = n;
@@ -28,12 +27,13 @@ const isArmstrongNumber = (number) => {
   }
   return sum === number;
 };
+
 const Home = () => {
   const [num1, setNum1] = useState("");
   const [num2, setNum2] = useState("");
 
-  const isArmstrong = isArmstrongNumber(num1);
-  const isPrime = isPrimeNumber(num2);
+  const isArmstrong = useMemo(()=>{isArmstrongNumber(num1)},[num1]);
+  const isPrime = useMemo(()=>{isPrimeNumber(num2)},[num2]);
   return (
     <div className="App">
       <h2>Armstrong Checker</h2>
